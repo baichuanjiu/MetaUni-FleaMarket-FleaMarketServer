@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  market.api:
+    image: ${DOCKER_REGISTRY-}marketapi
+    build:
+      context: .
+      dockerfile: Market.API/Dockerfile
+    ports:
+      - 52164:80
+      - 52165:443
+    environment:
+      TZ: Asia/Shanghai
+      Consul__ID: Market.API.52164
+      Consul__Name: FleaMarket.Market.API
+      Consul__IP: host.docker.internal
+      Consul__Port: 52164
